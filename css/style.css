@@ -1,0 +1,165 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(#d9d9d9, #ffffff);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: #707070;
+}
+
+/* Menu Superior */
+
+#navbar {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  height: 120px;
+  overflow: hidden;
+  background-image: linear-gradient(to right, #4dd2d2, #092331);
+}
+
+#navlogo {
+  float: left;
+  padding-left: 250px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#navmenu {
+  float: right;
+  padding-right: 180px;
+  padding-top: 44px;
+}
+
+#navmenu ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+#navmenu li {
+  float: left;
+}
+
+#navmenu li a {
+  display: block;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  padding-right: 70px;
+}
+
+/* Section Empresa */
+
+#empresa {
+  margin-left: 250px;
+  margin-right: 250px;
+  margin-bottom: 100px;
+}
+
+/* Grid do quadro principal */
+
+.quadro {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+  
+.quadro-0 { grid-area: 1 / 1 / 2 / 2; }
+
+/* Grid dos quadros json */
+
+.quadro-dados {
+  float: left;
+  padding-left: 30px;
+}
+
+.quadros {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+}
+
+.quadros-0 {
+  grid-area: 1/1/2/2;
+}
+
+.quadros-1 {
+  grid-area: 1/2/2/3;
+}
+
+.quadros-2 {
+  grid-area: 1/3/2/4;
+}
+
+.quadros-3 {
+  grid-area: 2/1/3/2;
+}
+
+.quadros-4 {
+  grid-area: 2/2/3/3;
+}
+
+.quadros-5 {
+  grid-area: 2/3/3/4;
+}
+
+.quadros-6 {
+  grid-area: 3/1/4/2;
+}
+
+.quadros-7 {
+  grid-area: 3/2/4/3;
+}
+
+.quadros-8 {
+  grid-area: 3/3/4/4;
+}
+
+.quadros-dados {
+  float: left;
+  padding-left: 20px;
+  padding-top: 45px;
+  vertical-align: middle;
+}
+
+.titulo {
+  font-weight: 700;
+  color: #092432;
+}
+
+.container-foto {
+  float: left;
+  position:relative;
+}
+
+.foto {
+  float: left;
+  border-radius: 50%;
+}
+
+.notify-badge{
+  position:absolute;
+  right:10px;
+  background:#4dd2d2;
+  text-align: center;
+  border-radius:50%;
+  color:#092331;
+  padding:5px 10px;
+  font-size:16px;
+  font-weight:700;
+}
+
+.card {
+  background-color: #f0f1ef;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 30px;
+}

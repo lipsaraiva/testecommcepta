@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Teste Commcepta</title>
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" >
+	</head>
+
+	<body>
+
+		<header>
+			<div id="navbar">
+				<div id="navlogo">
+					<img src="images/logo.png" alt="Space Box">
+				</div>
+				<div id="navmenu">
+					<ul>
+						<li><a href="#empresa">EMPRESA</a></li>
+						<li><a href="#servico">SERVIÇO</a></li>
+						<li><a href="#contato">CONTATO</a></li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		
+		<section id="empresa">
+			<div class="quadro">
+				<div class="quadro-0 card">
+					<div id="resfoto"></div>
+					<div class="quadro-dados">
+						<div id="resnome"></div>
+						<div id="rescargo"></div>
+						<div id="residade"></div>
+					</div>
+				</div>
+			</div>
+			<div id="lista"></div>
+		</section>
+
+		<script>
+			var xmlhttp = new XMLHttpRequest();
+			var conteudo = '<div class="quadros">';
+			var loop = conteudo;
+
+			//Ler dados do json e popular a div lista
+			xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					var cliente = JSON.parse(this.responseText); 
+					for(var i=0; i<cliente.length; i++) {
+						var conteudo = `<div class="quadros-${i} card" id="quadros-${i}" onclick="mostrar('${i}', '${cliente.length}', '${cliente[i]['foto']}', '${cliente[i]['nome']}', '${cliente[i]['cargo']}', '${cliente[i]['idade']}')">
+						<div class="container-foto">
+							<span class="notify-badge">${cliente[i]['id']}</span>
+							<img src="images/${cliente[i]['foto']}" alt="${cliente[i]['nome']}" class="foto">
+						</div>
+						<div class="quadros-dados">
+							<div class="titulo" id="quadros-titulo-${i}">${cliente[i]['nome']}</div>
+							<span id="quadros-cargo-${i}">${cliente[i]['cargo']}</span>
+						</div>
+						</div>`;
+						loop+= ''+conteudo;
+
+					}
+					loop+= '</div>';
+					document.getElementById("lista").innerHTML = loop;
+
+					//Preencher os dados do quadro principal:
+					document.getElementById("resfoto").innerHTML = `<img src="images/${cliente[0]['foto']}" alt="${cliente[0]['nome']}" class="foto">`;
+					document.getElementById("resnome").innerHTML = `<p>NOME: <span class="titulo">${cliente[0]['nome']}</span></p>`;
+					document.getElementById("rescargo").innerHTML = `<p>CARGO: <span class="titulo">${cliente[0]['cargo']}</span></p>`;
+					document.getElementById("residade").innerHTML = `<p>IDADE: <span class="titulo">${cliente[0]['idade']}</span></p>`;
+				}
+			};
+			xmlhttp.open("POST", "dados.json", true);
+			xmlhttp.send();
+
+			//Funcao para mostrar dados ao clicar
+			function mostrar(numdiv, num, foto, nome, cargo, idade) {
+				for(var i=0; i<num; i++) {
+					document.getElementById("quadros-"+i).style.background="#f0f1ef";
+					document.getElementById("quadros-titulo-"+i).style.color="#092432";
+					document.getElementById("quadros-cargo-"+i).style.color="#707070";
+				}
+				document.getElementById("quadros-"+numdiv).style.background="#002b50";
+				document.getElementById("quadros-titulo-"+numdiv).style.color="#ffffff";
+				document.getElementById("quadros-cargo-"+numdiv).style.color="#ffffff";
+				document.getElementById("resfoto").innerHTML = '<img src="images/'+foto+'" alt="'+nome+'" class="foto">';
+				document.getElementById("resnome").innerHTML = '<p>NOME: <span class="titulo">'+nome+'</span></p>';
+				document.getElementById("rescargo").innerHTML = '<p>CARGO: <span class="titulo">'+cargo+'</span></p>';
+				document.getElementById("residade").innerHTML = '<p>IDADE: <span class="titulo">'+idade+'</span></p>';
+			}
+		</script>
+
+	</body>
+</html>
